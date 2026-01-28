@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Campus Ambassador & Employee Management System - Design System */
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Premium Gold & Deep Charcoal */
+
+    /* Background: Deep Charcoal to Black */
+    --background: 240 6% 6%;
+    /* #0F0F10 */
+    --foreground: 45 15% 95%;
+    /* #F5F3EF - Warm White */
+
+    --card: 240 6% 8%;
+    /* #131315 */
+    --card-foreground: 45 15% 95%;
+
+    --popover: 240 6% 8%;
+    --popover-foreground: 45 15% 95%;
+
+    /* Primary: Metallic Gold */
+    --primary: 42 68% 55%;
+    /* #D4AF37 */
+    --primary-foreground: 0 0% 0%;
+    /* Black text on gold for readability */
+
+    /* Secondary: Dark Graphite */
+    --secondary: 240 4% 12%;
+    /* #1D1D20 */
+    --secondary-foreground: 42 68% 55%;
+    /* Gold text on dark */
+
+    /* Muted: Subtle backgrounds */
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 80%;
+    /* Light Gray for better contrast */
+
+    /* Accent: Soft Gold Highlights */
+    --accent: 42 68% 55%;
+    --accent-foreground: 0 0% 0%;
+
+    /* Destructive: Muted Rose (keeping distinct but elegant) */
+    --destructive: 0 60% 40%;
+    --destructive-foreground: 45 15% 95%;
+
+    /* UI Elements */
+    --border: 240 4% 20%;
+    /* Dark Grey */
+    --input: 240 4% 20%;
+    --ring: 42 68% 55%;
+    /* Gold Focus Ring */
+    --radius: 0.5rem;
+    /* Slightly sharper corners for modern corporate look */
+
+    /* Custom semantic colors */
+    --success: 142 60% 40%;
+    /* Professional Green */
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --info: 42 68% 55%;
+    /* Using Gold as Info/Highlight */
+    --info-foreground: 0 0% 0%;
+    --pending: 38 92% 50%;
+
+    /* Role-specific accents - adjusted to fit dark theme */
+    --owner: 42 68% 60%;
+    --owner-foreground: 0 0% 0%;
+    --admin: 42 50% 50%;
+    --admin-foreground: 0 0% 0%;
+    --ambassador: 42 68% 55%;
+    --ambassador-foreground: 0 0% 0%;
+
+    /* Gradient tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(42, 68%, 55%) 0%, hsl(35, 70%, 45%) 100%);
+    /* Gold Gradient */
+    --gradient-accent: linear-gradient(135deg, hsl(42, 68%, 55%) 0%, hsl(42, 68%, 45%) 100%);
+    --gradient-hero: linear-gradient(to bottom right, hsl(240, 6%, 6%), hsl(240, 5%, 10%));
+    /* Subtle Dark Gradient */
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px -5px rgba(212, 175, 55, 0.3);
+    /* Gold Glow */
+
+    /* Sidebar */
+    --sidebar-background: 240 6% 5%;
+    --sidebar-foreground: 45 15% 95%;
+    --sidebar-primary: 42 68% 55%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 240 4% 12%;
+    --sidebar-accent-foreground: 42 68% 55%;
+    --sidebar-border: 240 4% 15%;
+    --sidebar-ring: 42 68% 55%;
+  }
+
+  .dark {
+    /* Same as root since default is now dark */
+    --background: 240 6% 6%;
+    --foreground: 45 15% 95%;
+    --card: 240 6% 8%;
+    --card-foreground: 45 15% 95%;
+    --popover: 240 6% 8%;
+    --popover-foreground: 45 15% 95%;
+    --primary: 42 68% 55%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 240 4% 12%;
+    --secondary-foreground: 42 68% 55%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 45 5% 65%;
+    --accent: 42 68% 55%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 60% 40%;
+    --destructive-foreground: 45 15% 95%;
+    --border: 240 4% 20%;
+    --input: 240 4% 20%;
+    --ring: 42 68% 55%;
+
+    --sidebar-background: 240 6% 5%;
+    --sidebar-foreground: 45 15% 95%;
+    --sidebar-primary: 42 68% 55%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 240 4% 12%;
+    --sidebar-accent-foreground: 42 68% 55%;
+    --sidebar-border: 240 4% 15%;
+    --sidebar-ring: 42 68% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight text-white;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-white/5 shadow-lg relative overflow-hidden;
+  }
+
+  .glass-card::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-50;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .stat-card {
+    @apply rounded-xl p-6 transition-all duration-300 hover:shadow-glow hover:border-primary/30 border border-white/5 bg-card/40 backdrop-blur-md;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-primary hover:bg-white/5;
+  }
+
+  .nav-link-active {
+    @apply bg-white/5 text-primary border-r-2 border-primary;
+  }
+
+  .badge-owner {
+    @apply bg-owner/20 text-owner border border-owner/30;
+  }
+
+  .badge-admin {
+    @apply bg-admin/20 text-admin border border-admin/30;
+  }
+
+  .badge-ambassador {
+    @apply bg-ambassador/20 text-ambassador border border-ambassador/30;
+  }
+
+  /* Gold Button Variant */
+  .btn-gold {
+    @apply bg-gradient-to-r from-[#D4AF37] to-[#C28E0D] text-black font-semibold hover:shadow-glow hover:brightness-110 transition-all duration-300 border-none;
+  }
+
+  .btn-gold-outline {
+    @apply bg-transparent border border-primary/50 text-primary hover:bg-primary/10 hover:border-primary transition-all duration-300;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes pulse-glow {
+
+    0%,
+    100% {
+      box-shadow: 0 0 15px -5px rgba(212, 175, 55, 0.2);
+    }
+
+    50% {
+      box-shadow: 0 0 25px -5px rgba(212, 175, 55, 0.4);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .text-gold {
+    color: hsl(42, 68%, 55%);
+  }
+
+  .border-gold-subtle {
+    border-color: rgba(212, 175, 55, 0.2);
+  }
+}
