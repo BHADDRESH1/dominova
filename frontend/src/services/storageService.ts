@@ -1,26 +1,18 @@
-
-import { supabase } from "@/integrations/supabase/client";
+const API_BASE = import.meta.env.VITE_BACKEND_URL
+  ? `${import.meta.env.VITE_BACKEND_URL}/api/upload`
+  : "http://localhost:3000/api/upload";
 
 export const storageService = {
-    async uploadPaymentProof(file: File) {
-        const fileExt = file.name.split('.').pop();
-        const fileName = `${Math.random()}.${fileExt}`;
-        const filePath = `${fileName}`;
+  async uploadPaymentProof(file: File) {
+    const formData = new FormData();
+    formData.append("file", file);
 
-        const { data, error } = await supabase.storage
-            .from('payment_proofs')
-            .upload(filePath, file);
-
-        if (error) {
-            console.error('Error uploading file:', error);
-            throw error;
-        }
-
-        // Get public URL
-        const { data: { publicUrl } } = supabase.storage
-            .from('payment_proofs')
-            .getPublicUrl(filePath);
-
-        return publicUrl;
-    }
+    const res = await fetch(`${API_BASE}/payment-proof`, {
+      method: "POST",
+      body: formData,
+    });
+    if (!res.ok) throw new Error("Failed to upload payment proof");
+    const data = await res.json();
+    return data.url || data.publicUrl || data.path || null;
+  },
 };

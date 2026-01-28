@@ -1,36 +1,33 @@
-
-import { supabase } from "@/integrations/supabase/client";
-
 export interface Employee {
-    id: string;
-    employee_id_code: string;
-    full_name: string;
-    designation: string;
-    department: string;
-    status: "active" | "inactive";
-    employment_type: "Full-time" | "Part-time" | "Contract";
-    date_of_joining: string;
+  id: string;
+  employee_id_code: string;
+  full_name: string;
+  designation: string;
+  department: string;
+  status: "active" | "inactive";
+  employment_type: "Full-time" | "Part-time" | "Contract";
+  date_of_joining: string;
 }
 
+const API_BASE = "/api/employees";
+
 export const employeeService = {
-    async getAllEmployees() {
-        const { data, error } = await supabase
-            .from('employees')
-            .select('*')
-            .order('created_at', { ascending: false });
+  async getAllEmployees(): Promise<Employee[]> {
+    const res = await fetch(API_BASE, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!res.ok) throw new Error("Failed to fetch employees");
+    return res.json();
+  },
 
-        if (error) throw error;
-        return data as Employee[];
-    },
-
-    async createEmployee(employee: Omit<Employee, 'id'>) {
-        const { data, error } = await supabase
-            .from('employees')
-            .insert([employee])
-            .select()
-            .single();
-
-        if (error) throw error;
-        return data;
-    }
+  async createEmployee(employee: Omit<Employee, "id">): Promise<Employee> {
+    const res = await fetch(API_BASE, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(employee),
+    });
+    if (!res.ok) throw new Error("Failed to create employee");
+    return res.json();
+  },
 };
